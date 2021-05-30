@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 不用重启服务器 -->
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- 表单样式 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 国际化文件 -->
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<!-- 动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<!-- 请求参数的编码方式--> 
+	<constant name="struts.i18n.encoding" value="UTF-8"/> 
+	<!-- 指定被struts2处理的请求后缀类型。多个用逗号隔开--> 
+	<!-- <constant name="struts.action.extension" value="action,do,htm,html,jsp"/>  -->
+	<!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段最好打开  --> 
+	<constant name="struts.configuration.xml.reload" value="true"/> 
+	<!-- 是否使用struts的开发模式。开发模式会有更多的调试信息。默认值为false(生产环境下使用),开发阶段最好打开  --> 
+	<constant name="struts.devMode" value="false"/>   
+	<!-- 设置浏览器是否缓存静态内容。默认值为true(生产环境下使用),开发阶段最好关闭  --> 
+	<constant name="struts.serve.static.browserCache" value="false" /> 
+	<!-- 指定由spring负责action对象的创建      --> 
+	<constant name="struts.objectFactory" value="spring" /> 
+	
+	
+	<package name="default" namespace="/" extends="struts-default">
+	
+		<!-- 定义新的拦截器栈，配置prepare 拦截器栈的 alwaysInvokePrepare 参数值为false -->
+		<interceptors>
+			<interceptor-stack name="sshStack">
+				<interceptor-ref name="paramsPrepareParamsStack">
+					<param name="prepare.alwaysInvokePrepare">false</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 使用新的拦截器栈 -->
+		<default-interceptor-ref name="sshStack"></default-interceptor-ref>
+	
+		<action name="emp-*" class="employeeAction" method="{1}">
+			<result name="list">/WEB-INF/views/emp-list.jsp</result>
+						
+			<result name="ajax-success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			
+			<result name="input">/WEB-INF/views/emp-input.jsp</result>
+			<result name="success" type="redirect">/emp-list</result>
+			
+		</action>
+		
+	
+	</package>
+	
+	
+
+</struts>

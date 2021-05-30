@@ -1,0 +1,194 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.zowe</groupId>
+  <artifactId>activitiDemo520</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>activitiDemo520 Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+	<!--spring的版本  -->
+	<spring.version>3.2.12.RELEASE</spring.version>
+	<!-- hibernate的版本 -->
+	<hibernate.version>4.2.4.Final</hibernate.version>
+	<!-- strtus2的版本 -->
+	<struts2.version>2.3.15.3</struts2.version>
+	<!-- slf4j日志所需要的版本 -->
+	<slf4j.version>1.7.5</slf4j.version>
+	<!--c3p0连接池的版本  -->
+	<c3p0.version>0.9.1.2</c3p0.version>
+	<!--mysql的版本  -->
+	<mysql.version>5.0.8</mysql.version>
+	<!--servlet的版本  -->
+	<servlet.version>2.5</servlet.version>
+	<!-- jsp的版本 -->
+	<jsp.version>2.0</jsp.version>
+	<!--junit单元测试的版本  -->
+	<junit.version>4.11</junit.version>
+  </properties>
+
+
+  <dependencies>
+  	<!-- spring所需要的所有的Jar包 -->
+    <dependency>		
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aspects</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+		
+	<!-- hibernate -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+	
+	<!-- slf4j日志所需要的Jar包 -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>${slf4j.version}</version>
+	</dependency>
+	<!-- c3p0连接池 -->
+		<dependency>
+		<groupId>c3p0</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>${c3p0.version}</version>
+	</dependency>
+	<!--mysql驱动包  -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>${mysql.version}</version>
+		<scope>runtime</scope>
+	</dependency>
+	<!-- struts需要的Jar包 -->
+	<dependency>
+		<groupId>org.apache.struts</groupId>
+		<artifactId>struts2-core</artifactId>
+		<version>${struts2.version}</version>
+	</dependency>
+	<!-- Spring整合Struts的插件包 -->
+	<dependency>
+		<groupId>org.apache.struts</groupId>
+		<artifactId>struts2-spring-plugin</artifactId>
+		<version>${struts2.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.struts</groupId>
+		<artifactId>struts2-json-plugin</artifactId>
+		<version>${struts2.version}</version>
+	</dependency>
+	<!-- struts 注解开发 -->
+	<dependency>
+		<groupId>org.apache.struts</groupId>
+		<artifactId>struts2-convention-plugin</artifactId>
+		<version>${struts2.version}</version>
+	</dependency>
+	<!--servlet相关Jar包  -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>${servlet.version}</version>
+		<scope>provided</scope>
+	</dependency>
+	<!-- JSP相关Jar包 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>${jsp.version}</version>
+		<scope>provided</scope>
+	</dependency>
+	<!-- 单元测试相关Jar包 -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit.version}</version>
+		<scope>test</scope><!-- 测试的时候需要 -->
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.17</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.webjars.bower/jquery -->
+	<dependency>
+	    <groupId>org.webjars.bower</groupId>
+	    <artifactId>jquery</artifactId>
+	    <version>1.9.1</version>
+	</dependency>
+	
+	
+  </dependencies>
+  
+  <build>
+  	<finalName>activitiDemo520</finalName>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.1</version>
+			<configuration>
+				<port>80</port>
+				<path>/</path>
+			</configuration>
+		</plugin>
+		<plugin>  
+		    <groupId>org.apache.maven.plugins</groupId>  
+		    <artifactId>maven-shade-plugin</artifactId>  
+		    <version>1.4</version>  
+		    <executions>  
+		        <execution>  
+		            <phase>package</phase>  
+		            <goals>  
+		                <goal>shade</goal>  
+		            </goals>  
+		            <configuration>  
+		                <transformers>  
+		                    <transformer  
+		                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">  
+		                        <mainClass>activiti.server.deploy.Server</mainClass>  
+		                    </transformer>  
+		                    <transformer  
+		                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+		                        <resource>META-INF/spring.handlers</resource>  
+		                    </transformer>  
+		                    <transformer  
+		                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+		                        <resource>META-INF/spring.schemas</resource>  
+		                    </transformer>  
+		                </transformers>  
+		            </configuration>  
+		        </execution>  
+		    </executions>  
+		</plugin>  
+	</plugins>
+	
+	</build>
+  
+</project>

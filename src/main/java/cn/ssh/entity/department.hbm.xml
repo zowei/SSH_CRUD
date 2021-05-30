@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"     
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    
+    <!-- 配置类和表的对应关系
+    		class标签：
+    			name属性:实体类全路径
+    			table属性:数据库表名称   
+     -->
+    <hibernate-mapping>
+    	<class name="cn.ssh.entity.Department" table="ssh_Department">
+    		<!-- id标签
+    				name属性：实体类id属性名称
+    				column属性：生成的表字段名称			
+    		 -->
+    		<id name="id" column="ID" type="java.lang.Integer">
+    			<!--  native：生成表id值自动增长-->
+    			<generator class="native"></generator>			   		
+    		</id>
+    		<!-- 配置其他属性字段的对应 -->
+    		<property name="departmentName" column="DEPARTMENT_NAME" type="java.lang.String"></property>
+    		
+    		
+    	</class>
+    
+    </hibernate-mapping>
